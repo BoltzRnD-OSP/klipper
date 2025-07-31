@@ -26,7 +26,8 @@ gpio_peripheral(uint32_t gpio, uint32_t mode, int pullup)
     regs->AFR[af_reg] = (regs->AFR[af_reg] & ~af_msk) | (func << af_shift);
     regs->MODER = (regs->MODER & ~m_msk) | (mode_bits << m_shift);
     regs->PUPDR = (regs->PUPDR & ~m_msk) | (pup << m_shift);
-    regs->OTYPER = (regs->OTYPER & ~(1 << pos)) | (od << pos);
+    // Comment it out to force Push pull on all states
+    // regs->OTYPER = (regs->OTYPER & ~(1 << pos)) | (od << pos);
 
     // Setup OSPEEDR:
     // stm32f0 is ~10Mhz at 50pF
